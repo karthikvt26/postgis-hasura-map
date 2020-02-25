@@ -6,13 +6,7 @@ CREATE TABLE public.nearby_restaurant (
     long double precision NOT NULL
 );
 COMMENT ON TABLE public.nearby_restaurant IS 'Set of table for nearest restaurant';
-CREATE FUNCTION public.get_nearby_restaurants(lat double precision, long double precision, bound integer) RETURNS SETOF public.nearby_restaurant
-    LANGUAGE sql STABLE
-    AS $$
-    SELECT name, ST_X(ST_Transform(way, 4326)) as long, ST_Y(ST_Transform(way, 4326)) as lat 
-        FROM planet_osm_point
-        WHERE ST_DWITHIN(way, ST_TRANSFORM(ST_SetSRID(ST_Point(long, lat),4326), 3857), bound);
-$$;
+
 CREATE TABLE public.planet_osm_line (
     osm_id bigint,
     access text,
@@ -297,6 +291,13 @@ CREATE TABLE public.planet_osm_roads (
     way_area real,
     way public.geometry(LineString,3857)
 );
+CREATE FUNCTION public.get_nearby_restaurants(lat double precision, long double precision, bound integer) RETURNS SETOF public.nearby_restaurant
+    LANGUAGE sql STABLE
+    AS $$
+    SELECT name, ST_X(ST_Transform(way, 4326)) as long, ST_Y(ST_Transform(way, 4326)) as lat 
+        FROM planet_osm_point
+        WHERE ST_DWITHIN(way, ST_TRANSFORM(ST_SetSRID(ST_Point(long, lat),4326), 3857), bound);
+$$;
 ALTER TABLE ONLY public.nearby_restaurant
     ADD CONSTRAINT nearby_restaurant_pkey PRIMARY KEY (lat, name, long);
 CREATE INDEX planet_osm_line_way_idx ON public.planet_osm_line USING gist (way) WITH (fillfactor='100');
