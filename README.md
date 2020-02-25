@@ -19,10 +19,15 @@ GraphQL Engine over Postgres. It has an interface to query nearby location given
   git clone https://github.com/hasura/sample-postgis-app
   cd sample-postgis-app
   ```
+- Run hasura graphql engine on your machine or on an external server as follows
+  ```bash
+  cd hasura
+  docker-compose up -d
+  ```
 - [Install Hasura CLI](https://docs.hasura.io/1.0/graphql/manual/hasura-cli/install-hasura-cli.html)
 - Goto `hasura/` and edit `config.yaml`:
   ```yaml
-  endpoint: https://map-backend2.herokuapp.com
+  endpoint: http://localhost:8080
   ```
 - Apply the migrations:
   ```bash
@@ -30,5 +35,5 @@ GraphQL Engine over Postgres. It has an interface to query nearby location given
   ```
 - Run the app (go to the root of the repo):
   ```bash
-  REACT_APP_HASURA_ENDPOINT=map-backend2.herokuapp.com npm start
+  REACT_APP_HASURA_ENDPOINT=localhost:8080 npm start
   ```
