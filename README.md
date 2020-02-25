@@ -1,23 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# sample-posgis-app
 
-## Available Scripts
+A demo application to showcase postgis capabilities and a map application to simulate restaurants nearby.
 
-In the project directory, you can run:
+[![Edit realtime-location-tracking](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/hasura/graphql-engine/tree/master/community/sample-apps/realtime-location-tracking?fontsize=14)
 
-### `REACT_APP_HASURA_ENDPOINT=165.22.214.39:8080 npm start`
+This application is built using React and is powered by Hasura
+GraphQL Engine over Postgres. It has an interface to query nearby location given lat, lng and radius in real-time.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Running the app yourself
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `REACT_APP_HASURA_ENDPOINT=165.22.214.39:8080 npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Deploy Postgres and GraphQL Engine on Heroku:
+  
+  [![Deploy to
+  heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hasura/graphql-engine-heroku)
+- Get the Heroku app URL (say `realtime-backend2.herokuapp.com`)
+- Clone this repo:
+  ```bash
+  git clone https://github.com/hasura/sample-postgis-app
+  cd sample-postgis-app
+  ```
+- [Install Hasura CLI](https://docs.hasura.io/1.0/graphql/manual/hasura-cli/install-hasura-cli.html)
+- Goto `hasura/` and edit `config.yaml`:
+  ```yaml
+  endpoint: https://map-backend2.herokuapp.com
+  ```
+- Apply the migrations:
+  ```bash
+  hasura migrate apply
+  ```
+- Run the app (go to the root of the repo):
+  ```bash
+  REACT_APP_HASURA_ENDPOINT=map-backend2.herokuapp.com npm start
+  ```

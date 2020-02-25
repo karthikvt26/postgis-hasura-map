@@ -1,0 +1,14 @@
+- args:
+    functions:
+    - function:
+        name: get_nearby_restaurants
+        schema: public
+    tables:
+    - table:
+        name: nearby_restaurant
+        schema: public
+    - table:
+        name: planet_osm_point
+        schema: public
+    version: 2
+  type: replace_metadata
