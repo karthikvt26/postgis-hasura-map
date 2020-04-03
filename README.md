@@ -9,7 +9,7 @@ GraphQL Engine over Postgres. It has an interface to query nearby location given
 
 - Clone this repo:
   ```bash
-  git clone https://github.com/hasura/sample-postgis-app
+  git clone https://github.com/karthikvt26/sample-postgis-app
   cd sample-postgis-app
   ```
 - Run hasura graphql engine on your machine or on an external server as follows
