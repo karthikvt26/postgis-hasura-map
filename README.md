@@ -1,4 +1,4 @@
-# sample-posgis-app
+# postgis-hasura-app
 
 A demo application to showcase postgis capabilities and a map application to simulate restaurants nearby.
 
